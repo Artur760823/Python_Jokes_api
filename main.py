@@ -1,7 +1,14 @@
-
+import pyttsx3
 import requests
-
 import json
+
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+
+rate = engine.getProperty('rate')   # getting details of current speaking rate
+print (rate)                        #printing current voice rate
+engine.setProperty('rate', 125)     # setting up new voice rate
+engine.setProperty('voice', voices[0].id)
 
 url = "https://official-joke-api.appspot.com/random_ten"
 
@@ -30,3 +37,8 @@ for j in json_data:
 
 for joke in jokes:
     print(joke)
+
+    pyttsx3.speak("Setup")
+    pyttsx3.speak(joke.setup)
+    pyttsx3.speak("Punchline")
+    pyttsx3.speak(joke.punchline)
