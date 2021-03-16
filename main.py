@@ -7,8 +7,8 @@ voices = engine.getProperty('voices')
 
 rate = engine.getProperty('rate')   # getting details of current speaking rate
 print (rate)                        #printing current voice rate
-engine.setProperty('rate', 125)     # setting up new voice rate
-engine.setProperty('voice', voices[0].id)
+engine.setProperty('rate', 150)     # setting up new voice rate
+engine.setProperty('voice', voices[-1].id)
 
 url = "https://official-joke-api.appspot.com/random_ten"
 
@@ -30,14 +30,13 @@ jokes = []
 
 for j in json_data:
     setup = j["setup"]
-    punchline = j["punchline"]
+    punchline = j['punchline']
     joke = Joke(setup, punchline)
     jokes.append(joke)
 
 
 for joke in jokes:
     print(joke)
-
     pyttsx3.speak("Setup")
     pyttsx3.speak(joke.setup)
     pyttsx3.speak("Punchline")
